@@ -10,7 +10,7 @@ const LandingPage = () => {
           Начни свою работу с
         </h1>
         <div className="font-bold text-3xl md:text-6xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-4 p-2 rounded-md pb-4">
-          распределения задач
+          TaskManager
         </div>
       </div>
       <div className="text-sm md:text-xl text-neutral-400 mt-4 max-w-xs md:max-w-2xl text-center mx-auto">
