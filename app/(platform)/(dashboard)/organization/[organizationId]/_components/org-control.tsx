@@ -16,7 +16,7 @@ export const OrgControl = () => {
     })
   }, [setActive, params.organizationId])
   return (
-    <div>OrgControl</div>
+    <div></div>
   )
 }
 
