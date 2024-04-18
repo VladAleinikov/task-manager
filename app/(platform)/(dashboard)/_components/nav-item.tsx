@@ -1,12 +1,12 @@
 "use client";
 
-import { AccordionItem } from "@/components/ui/accordion";
+import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { IOrganization } from "@/types/organization";
-import { AccordionTrigger } from "@radix-ui/react-accordion";
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavItemProps {
   isActive: boolean;
@@ -21,6 +21,7 @@ const NavItem = ({
   onExpand,
 }: NavItemProps) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const routes = [
     {
@@ -45,6 +46,10 @@ const NavItem = ({
     },
   ];
 
+  const onClick = (href: string) => {
+    router.push(href);
+  }
+
   return (
     <AccordionItem value={organization.id} className="border-none">
       <AccordionTrigger
@@ -66,6 +71,20 @@ const NavItem = ({
           <span className="font-medium text-sm">{organization.name}</span>
         </div>
       </AccordionTrigger>
+      <AccordionContent className="pt-1 text-neutral-700">
+        {routes.map((route) =>
+          <Button
+            key={route.href}
+            size="sm"
+            onClick={() => onClick(route.href)}
+            className={cn("w-full font-normal justify-start pl-10 mb-1",
+              pathname === route.href && "bg-sky-500/10 text-sky-700")}
+            variant="ghost"
+          >
+            {route.icon}
+            {route.label}
+          </Button>)}
+      </AccordionContent>
     </AccordionItem>
   );
 };
