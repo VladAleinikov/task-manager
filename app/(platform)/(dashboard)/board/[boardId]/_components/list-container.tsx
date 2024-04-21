@@ -1,20 +1,36 @@
 "use client"
 
 import { ListWithCards } from "@/types"
-import { List } from "@prisma/client"
 import { ListForm } from "./list-form"
+import { useEffect, useState } from "react"
+import { ListItem } from "./list-item"
 
 
-interface ListContainerProps{
-      boardId: string,
-      data: ListWithCards[]
+interface ListContainerProps {
+  boardId: string,
+  data: ListWithCards[]
 }
 
-export const ListContainer = ({ boardId, data}: ListContainerProps) => {
+export const ListContainer = ({ boardId, data }: ListContainerProps) => {
+  const [orderedData, setOrderedData] = useState(data);
+
+  useEffect(() => {
+    setOrderedData(data)
+  }, [data])
+
   return (
-        <ol>
-            <ListForm/>
-           <div className="flex-shrink-0 w-1"/>   
+    <ol className="flex gap-x-3 h-full">
+      {orderedData.map((list, id) => {
+        return (
+          <ListItem
+            key={list.id}
+            id={id}
+            data={list}
+          />
+        )
+      })}
+      <ListForm />
+      <div className="flex-shrink-0 w-1" />
     </ol>
   )
 }
