@@ -99,7 +99,7 @@ export const ListOptions = ({ onAddCard, data }: ListOptionsProps) => {
                         </form>
                         <Separator />
                         <form
-                              action={deleteListHandler}
+                              action={onDelete}
                         >
                               <input hidden name="id" id="id" value={data.id} />
                               <input hidden name="boardId" id="boardId" value={data.boardId} />
