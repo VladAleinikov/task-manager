@@ -8,6 +8,7 @@ import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import { useAction } from "@/hooks/use-action"
 import { updateListOrder } from "@/actions/update-list-order"
 import { toast } from "sonner"
+import { updateCardOrder } from "@/actions/update-card-order"
 
 
 interface ListContainerProps {
@@ -30,6 +31,14 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
     onSuccess: () => {
       toast.success(`Тема перемещена`);
+    },
+    onError: (error) => {
+      toast.error(error);
+    }
+  })
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+    onSuccess: () => {
+      toast.success(`Задача перемещена`);
     },
     onError: (error) => {
       toast.error(error);
@@ -103,6 +112,8 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
         sourceList.cards = reorderedCards;
 
         setOrderedData(newOrderedData);
+
+        executeUpdateCardOrder({ items: reorderedCards, boardId })
       }
       // Перемещение задачи в другую тему
       else {
@@ -126,6 +137,8 @@ export const ListContainer = ({ boardId, data }: ListContainerProps) => {
         })
 
         setOrderedData(newOrderedData);
+
+        executeUpdateCardOrder({ items: destList.cards, boardId })
       }
     }
   }
