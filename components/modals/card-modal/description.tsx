@@ -34,6 +34,10 @@ export const Description = ({ data }: DescriptionProps) => {
         queryKey: ["card", data.id]
       });
 
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id]
+      });
+
       toast.success(`Описание задачи "${data.title}" добавлено`)
       disableEditing();
     },
