@@ -18,7 +18,7 @@ interface FormTextareaProps {
       onBlur?: () => void,
       onClick?: () => void,
       onKeyDown?: KeyboardEventHandler<HTMLTextAreaElement | undefined>,
-      defaultValut?: string
+      defaultValue?: string
 }
 
 export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(({
@@ -32,7 +32,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>((
       onBlur,
       onClick,
       onKeyDown,
-      defaultValut,
+      defaultValue,
 }, ref) => {
       const { pending } = useFormStatus();
 
@@ -55,7 +55,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>((
                               required={required}
                               disabled={disabled || pending}
                               placeholder={placeholder}
-                              defaultValue={defaultValut}
+                              defaultValue={defaultValue}
                               name={id}
                               id={id}
                               className={cn(

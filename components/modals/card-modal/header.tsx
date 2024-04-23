@@ -69,8 +69,7 @@ export const Header = ({ data }: HeaderProps) => {
                                     defaultValue={title}
                                     onBlur={onBlur}
                                     className="font-semibold text-xl px-1 to-neutral-700 bg-transparent border-transparent relative -left-11.5 w-[95%] focus-visible:bg-white focus-visible:border-input mb-0.5 truncate"
-
-
+                                    errors={fieldErrors}
                               />
                         </form>
                         <p className="text-sm text-muted-foreground">

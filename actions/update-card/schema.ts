@@ -1,12 +1,14 @@
 import { z } from "zod";
 
 export const UpdateCard = z.object({
-      title: z.string({
-            required_error: "Заголовок обязателен",
-            invalid_type_error: "Заголовок обязателен"
-      }).min(3, {
-            message: "Заголовок слишком короткий"
-      }),
+      title: z.optional(
+            z.string({
+                  required_error: "Заголовок обязателен",
+                  invalid_type_error: "Заголовок обязателен"
+            }).min(3, {
+                  message: "Заголовок слишком короткий"
+            }),
+      ),
       description: z.optional(
             z.string({
                   required_error: "Описание обязателено",
